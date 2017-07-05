@@ -3,12 +3,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Retrieve {
 
-    public static void fillList(ArrayList<Level> list) {
-        System.out.println("Tabelle game_level:");
+    public static void fillList(LevelList list) {
 
         Connection con = null;
         PreparedStatement pst = null;
@@ -24,7 +22,12 @@ public class Retrieve {
             pst = con.prepareStatement("SELECT * FROM game_level");
             rs = pst.executeQuery();
 
+            int id;
+            String solution;
+            System.out.println("Tabelle game_level:");
             while (rs.next()) {
+
+                //PRINTOUT DEBUG
                 System.out.print(rs.getInt(1));
                 System.out.print(" : ");
                 System.out.print(rs.getInt(2));
@@ -32,7 +35,11 @@ public class Retrieve {
                 System.out.print(rs.getString(3));
                 System.out.print(" : ");
                 System.out.println(rs.getString(4));
+                //END DEBUG
 
+                id = rs.getInt(1);
+                solution = rs.getString(4);
+                list.add(id , solution);
             }
 
         } catch (SQLException ex) {
@@ -50,7 +57,6 @@ public class Retrieve {
                 if (con != null) {
                     con.close();
                 }
-                System.out.println("-------------------------------------------");
 
             } catch (SQLException ex) {
                 System.err.println("FEHLER CON-SCHLIEßEN RETRIVE");

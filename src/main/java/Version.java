@@ -41,7 +41,6 @@ public class Version {
                 if (con != null) {
                     con.close();
                 }
-                System.out.println("-------------------------------------------");
 
             } catch (SQLException ex) {
                 System.err.println("FEHLER CON-SCHLIEßEN VERSION");

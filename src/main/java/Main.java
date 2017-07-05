@@ -7,11 +7,15 @@ public class Main {
 
     public static void main(String [] args){
 
-        ArrayList<Level> list = new ArrayList<Level>();
+        LevelList list = new LevelList();
 
         Version.checkVersion();
+        System.out.println("-------------------------------------------");
 
         Retrieve.fillList(list);
+        System.out.println("-------------------------------------------");
+
+        System.out.println(list.toString());
 
     }
 }

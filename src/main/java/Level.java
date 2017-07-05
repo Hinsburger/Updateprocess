@@ -6,12 +6,16 @@ public class Level {
     private String verbalization;
     private String solution;
 
-    public Level(int id, String verbalization, String solution){
+    public Level(int id, String solution){
         this.id = id;
-        this.verbalization = verbalization;
+        this.verbalization = null;
         this.solution = solution;
     }
 
+    @Override
+    public String toString(){
+        return id + " : " + verbalization + " : " + solution;
+    }
 
     /**
      * Getter/Setter
