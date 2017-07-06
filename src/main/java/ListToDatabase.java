@@ -3,7 +3,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ListToDb {
+public class ListToDatabase {
 
     public static void newVerbalizations(LevelList list) {
 
@@ -24,8 +24,7 @@ public class ListToDb {
             for(Level level : list.getList()) {
                 if(level.isReady()) {
                     st.executeUpdate("UPDATE game_level SET verbalization = '" + level.getVerbalization()
-                                        + "' WHERE game_level.glevel_levelID = " + level.getId());
-                    System.out.println("Hallo");
+                                        + "', ready = TRUE WHERE game_level.levelid = " + level.getId());
                 }
             }
 

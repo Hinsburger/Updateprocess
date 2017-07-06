@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DbToList {
+public class DatabaseToList {
 
     public static void fillList(LevelList list) {
 
@@ -34,7 +34,10 @@ public class DbToList {
                 System.out.print(" : ");
                 System.out.print(rs.getString(3));
                 System.out.print(" : ");
-                System.out.println(rs.getString(4));
+                System.out.print(rs.getString(4));
+                System.out.print(" : ");
+                System.out.println(rs.getBoolean(5));
+
                 //END DEBUG
 
                 id = rs.getInt(1);

@@ -19,12 +19,11 @@ public class JsonToList{
         String url;
         JsonObject json;
 
-        for(int i = 0 ; i <= 2 ; i++) {
-            for (Level level : list.getList()) {
+        for (Level level : list.getList()) {
 
-                if(!level.isReady()) {
-                    solution = level.getSolution();
-                    url = buildUrl(solution);
+            if(!level.isReady()) {
+                solution = level.getSolution();
+                url = buildUrl(solution);
                     json = downloadJson(url);
 
                     if (json != null) {
@@ -32,11 +31,7 @@ public class JsonToList{
                         level.setVerbalization(verbalization);
                         level.setReady(true);
                     } else {
-                        if(i == 2) {
-                            errorList.add(level);
-                        }
                     }
-                }
             }
         }
         return errorList;

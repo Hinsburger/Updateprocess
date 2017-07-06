@@ -11,16 +11,18 @@ public class Main {
         Version.checkVersion();
         System.out.println("-------------------------------------------");
 
-        DbToList.fillList(list);
+        DatabaseToList.fillList(list);
         System.out.println("-------------------------------------------");
 
+        errorList.setList(JsonToList.getVerbalization(list));
+        System.out.println("-------------------------------------------");
+
+        ListToDatabase.newVerbalizations(list);
+        System.out.println("-------------------------------------------");
+
+        System.out.println("FINISH:");
         System.out.println(list.toString());
-
-        JsonToList.getVerbalization(list);
-
-        System.out.println(list.toString());
-
-        ListToDb.newVerbalizations(list);
+        System.out.println("-------------------------------------------");
 
         if(!errorList.getList().isEmpty()) {
             System.err.println("Q2G-Downloadfehler:");
