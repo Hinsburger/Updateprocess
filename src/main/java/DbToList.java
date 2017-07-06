@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Retrieve {
+public class DbToList {
 
     public static void fillList(LevelList list) {
 
