@@ -5,16 +5,18 @@ public class Level {
     private int id;
     private String verbalization;
     private String solution;
+    private boolean ready;
 
     public Level(int id, String solution){
         this.id = id;
         this.verbalization = null;
         this.solution = solution;
+        this.ready = false;
     }
 
     @Override
     public String toString(){
-        return id + " : " + verbalization + " : " + solution;
+        return id + " : " + verbalization + " : " + solution + " : " + ready;
     }
 
     /**
@@ -42,5 +44,13 @@ public class Level {
 
     public void setSolution(String solution) {
         this.solution = solution;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
     }
 }

@@ -6,6 +6,7 @@ public class Main {
     public static void main(String [] args){
 
         LevelList list = new LevelList();
+        LevelList errorList = new LevelList();
 
         Version.checkVersion();
         System.out.println("-------------------------------------------");
@@ -16,5 +17,13 @@ public class Main {
         System.out.println(list.toString());
 
         JsonToList.getVerbalization(list);
+
+        System.out.println(list.toString());
+
+
+        if(errorList.getList().isEmpty()) {
+            System.err.println("Q2G-Downloadfehler:");
+            System.err.println(errorList.toString());
+        }
     }
 }
