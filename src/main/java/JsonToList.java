@@ -10,7 +10,6 @@ import com.google.gson.JsonSyntaxException;
  * Created by Janik on 06.07.2017.
  */
 
-
 public class JsonToList{
 
     public static ArrayList<Level> getVerbalization(LevelList list){

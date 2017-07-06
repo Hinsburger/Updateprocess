@@ -20,8 +20,9 @@ public class Main {
 
         System.out.println(list.toString());
 
+        ListToDb.newVerbalizations(list);
 
-        if(errorList.getList().isEmpty()) {
+        if(!errorList.getList().isEmpty()) {
             System.err.println("Q2G-Downloadfehler:");
             System.err.println(errorList.toString());
         }
