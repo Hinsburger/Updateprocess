@@ -1,33 +1,35 @@
 /**
- * Created by Janik on 05.07.2017.
+ *
  */
-public class Level {
+public class CLevel {
     private int id;
     private String verbalization;
     private String solution;
     private boolean ready;
 
-    public Level(int id, String solution){
+    /**
+     *
+     * @param id
+     * @param solution
+     */
+    public CLevel(int id, String solution){
         this.id = id;
         this.verbalization = null;
         this.solution = solution;
         this.ready = false;
     }
 
+    /**
+     * toString/Getter/Setter
+     */
+
     @Override
     public String toString(){
         return id + " : " + verbalization + " : " + solution + " : " + ready;
     }
 
-    /**
-     * Getter/Setter
-     */
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getVerbalization() {
@@ -40,10 +42,6 @@ public class Level {
 
     public String getSolution() {
         return solution;
-    }
-
-    public void setSolution(String solution) {
-        this.solution = solution;
     }
 
     public boolean isReady() {

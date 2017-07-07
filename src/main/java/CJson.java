@@ -7,36 +7,51 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 /**
- * Created by Janik on 06.07.2017.
+ *
  */
+public class CJson {
 
-public class JsonToList{
-
-    public static ArrayList<Level> getVerbalization(LevelList list){
-        ArrayList<Level> errorList = new ArrayList<Level>();
+    /**
+     *
+     * @param list
+     * @return
+     */
+    public static ArrayList<CLevel> getVerbalization(CLevelList list){
+        ArrayList<CLevel> errorList = new ArrayList<CLevel>();
         String solution;
         String verbalization;
         String url;
         JsonObject json;
 
-        for (Level level : list.getList()) {
+        //TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        for(int i = 0 ; i <= 2 ; i++) {
+            for (CLevel level : list.getList()) {
 
-            if(!level.isReady()) {
-                solution = level.getSolution();
-                url = buildUrl(solution);
+                if (!level.isReady()) {
+                    solution = level.getSolution();
+                    url = buildUrl(solution);
                     json = downloadJson(url);
 
                     if (json != null) {
-                        verbalization = extractVerbalization(json);
+                        verbalization = json.get("verbalization").getAsString();
                         level.setVerbalization(verbalization);
                         level.setReady(true);
                     } else {
+                        if(i == 2){
+                            errorList.add(level);
+                        }
                     }
+                }
             }
         }
         return errorList;
     }
 
+    /**
+     *
+     * @param solution
+     * @return
+     */
     private static String buildUrl (String solution){
         String url;
         String urlPrae = "http://134.96.217.36:8081/q2gWeb/Q2GApiConnector?targetEntity=";
@@ -50,9 +65,14 @@ public class JsonToList{
         return url;
     }
 
+    /**
+     *
+     * @param url
+     * @return
+     */
     private static JsonObject downloadJson(String url){
         try {
-            JsonObject jsonObject = new JsonObject();
+            JsonObject jsonObject;
             Gson gson = new Gson();
             String content = "";
 
@@ -62,8 +82,8 @@ public class JsonToList{
             }
             scanner.close();
 
-            //DEBUG!
-            System.out.println(content);
+            //DEBUG
+            //System.out.println(content);
 
             jsonObject = gson.fromJson(content, JsonObject.class);
 
@@ -79,10 +99,5 @@ public class JsonToList{
             System.err.println("FEHLER: Datei ist keine Jsondatei\n" + e );
             return null;
         }
-    }
-
-    private static String extractVerbalization(JsonObject jsonObject){
-
-        return jsonObject.get("verbalization").getAsString();
     }
 }
