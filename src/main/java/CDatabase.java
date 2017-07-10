@@ -133,7 +133,7 @@ public class CDatabase {
             for(CLevel level : list.getList()) {
                 if(level.isReady()) {
                     st.executeUpdate("UPDATE game_level SET verbalization = '" + level.getVerbalization()
-                            + "', ready = TRUE WHERE game_level.levelid = " + level.getId());
+                                        + "', ready = TRUE WHERE game_level.levelid = " + level.getId());
                 }
             }
 

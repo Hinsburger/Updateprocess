@@ -21,6 +21,7 @@ public class Main {
 
         //TODO: Anzahl Jsondownload versuche????? (Übergabeparameter)       Ja/Nein Team?
         //TODO: Versionscheck drinne lassen                                 Ja/Nein Team?
+        //TODO: Verbalization manipulieren (z.B. "is married" -> "is or was married")
 
         CLevelList list = new CLevelList();
         CLevelList errorList = new CLevelList();
@@ -28,12 +29,15 @@ public class Main {
         CDatabase.checkVersion();
         System.out.println("-------------------------------------------");
 
+        //Phase 1: Fill a List with the LevelDB:
         CDatabase.importLevel(list);
         System.out.println("-------------------------------------------");
 
+        //Phase 2: Download for each list entry a (new) Verbalization
         errorList.setList(CJson.getVerbalization(list));
         System.out.println("-------------------------------------------");
 
+        //Phase 3: Push the new Verbalizations in the DB
         CDatabase.exportLevel(list);
         System.out.println("-------------------------------------------");
 
