@@ -1,23 +1,38 @@
+package util;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
+
+import core.*;
+
 /**
  *
  */
-public class CDatabase {
+public class CDatabaseHandler {
+
+    private Connection con;
+    private Statement st;
+    private ResultSet rs;
+    private PreparedStatement pst;
+    private String [] props;
+
+
+    public CDatabaseHandler(){
+        props = getProperties();
+        checkVersion();
+    }
 
     /**
      *
      */
-    public static void checkVersion() {
+    public void checkVersion() {
         System.out.println("Version:");
 
-        Connection con = null;
-        Statement st = null;
-        ResultSet rs = null;
-
-        String [] props = getProperties();
+        con = null;
+        st = null;
+        rs = null;
 
         try {
             con = DriverManager.getConnection(props[0], props[1], props[2]);
@@ -53,13 +68,11 @@ public class CDatabase {
      *
      * @param list
      */
-    public static void importLevel(CLevelList list) {
+    public void importLevel(CLevelList list) {
 
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-
-        String [] props = getProperties();
+        con = null;
+        pst = null;
+        rs = null;
 
         try {
 
@@ -116,12 +129,10 @@ public class CDatabase {
      *
      * @param list
      */
-    public static void exportLevel(CLevelList list) {
+    public void exportLevel(CLevelList list) {
 
-        Connection con = null;
-        Statement st = null;
-
-        String [] props = getProperties();
+        con = null;
+        st = null;
 
         try {
 

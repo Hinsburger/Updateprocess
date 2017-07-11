@@ -1,3 +1,7 @@
+import core.CLevelList;
+import util.CDatabaseHandler;
+import util.CJsonHandler;
+
 /**
  *
  */
@@ -9,9 +13,9 @@ public class Main {
      */
     public static void main(String [] args){
         //TODO: Logger schreiben + (Fehler-)Ausgabe überarbeiten
-        //TODO: Database.properties (CDatabase)                             Hilfe Cedric Flo
-        //TODO: Laufzeit CJson verbessern. Nicht 3mal komplett durch
-        //TODO: Vererbung CLevelList
+        //TODO: Database.properties (util.CDatabaseHandler)                             Hilfe Cedric Flo
+        //TODO: Laufzeit util.CJsonHandler verbessern. Nicht 3mal komplett durch
+        //TODO: Vererbung core.CLevelList
         //TODO: Kommentieren :)
         //TODO: 2 MODI: 1. alle Level, 2. neue Level (Übergabeparameter)
         //TODO: Logische Packages/Refactoring, Codeanalyse                  Hilfe Klaus
@@ -25,20 +29,19 @@ public class Main {
 
         CLevelList list = new CLevelList();
         CLevelList errorList = new CLevelList();
-
-        CDatabase.checkVersion();
+        CDatabaseHandler databaseHandler = new CDatabaseHandler();
         System.out.println("-------------------------------------------");
 
         //Phase 1: Fill a List with the LevelDB:
-        CDatabase.importLevel(list);
+        databaseHandler.importLevel(list);
         System.out.println("-------------------------------------------");
 
         //Phase 2: Download for each list entry a (new) Verbalization
-        errorList.setList(CJson.getVerbalization(list));
+        errorList.setList(CJsonHandler.getVerbalization(list));
         System.out.println("-------------------------------------------");
 
         //Phase 3: Push the new Verbalizations in the DB
-        CDatabase.exportLevel(list);
+        databaseHandler.exportLevel(list);
         System.out.println("-------------------------------------------");
 
         System.out.println("FINISH:");

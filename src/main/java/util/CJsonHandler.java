@@ -1,3 +1,5 @@
+package util;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -6,10 +8,13 @@ import java.net.URL;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+
+import core.*;
+
 /**
  *
  */
-public class CJson {
+public class CJsonHandler {
 
     /**
      *
