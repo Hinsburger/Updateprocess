@@ -26,6 +26,14 @@ public class CLevelList{
     }
 
     /**
+     *
+     * @param level
+     */
+    public void add(CLevel level){
+        list.add(level);
+    }
+
+    /**
      * toString/Getter/Setter
      */
 

@@ -16,13 +16,17 @@ import core.*;
  */
 public class CJsonHandler {
 
+    private CLevelList errorList;
+
+    public CJsonHandler(){
+        errorList = new CLevelList();
+    }
     /**
      *
      * @param list
      * @return
      */
-    public static ArrayList<CLevel> getVerbalization(CLevelList list){
-        ArrayList<CLevel> errorList = new ArrayList<CLevel>();
+    public void getVerbalization(CLevelList list){
         String solution;
         String verbalization;
         String url;
@@ -49,7 +53,6 @@ public class CJsonHandler {
                 }
             }
         }
-        return errorList;
     }
 
     /**
@@ -57,7 +60,7 @@ public class CJsonHandler {
      * @param solution
      * @return
      */
-    private static String buildUrl (String solution){
+    private String buildUrl (String solution){
         String url;
         String urlPrae = "http://134.96.217.36:8081/q2gWeb/Q2GApiConnector?targetEntity=";
         String urlSuff = "&numBranches=3&numDistractors=0&maxResultSize=100";
@@ -75,7 +78,7 @@ public class CJsonHandler {
      * @param url
      * @return
      */
-    private static JsonObject downloadJson(String url){
+    private JsonObject downloadJson(String url){
         try {
             JsonObject jsonObject;
             Gson gson = new Gson();
@@ -104,5 +107,9 @@ public class CJsonHandler {
             System.err.println("FEHLER: Datei ist keine Jsondatei\n" + e );
             return null;
         }
+    }
+
+    public ArrayList<CLevel> getErrorList() {
+        return errorList.getList();
     }
 }

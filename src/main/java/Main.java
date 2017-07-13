@@ -13,7 +13,6 @@ public class Main {
      */
     public static void main(String [] args){
         //TODO: Logger schreiben + (Fehler-)Ausgabe überarbeiten
-        //TODO: Database.properties (util.CDatabaseHandler)                             Hilfe Cedric Flo
         //TODO: Laufzeit util.CJsonHandler verbessern. Nicht 3mal komplett durch
         //TODO: Vererbung core.CLevelList
         //TODO: Kommentieren :)
@@ -24,12 +23,11 @@ public class Main {
         //TODO: Zeit stoppen (Jedes einzelne Level oder 1 mal komplett?)
 
         //TODO: Anzahl Jsondownload versuche????? (Übergabeparameter)       Ja/Nein Team?
-        //TODO: Versionscheck drinne lassen                                 Ja/Nein Team?
         //TODO: Verbalization manipulieren (z.B. "is married" -> "is or was married")
 
         CLevelList list = new CLevelList();
-        CLevelList errorList = new CLevelList();
         CDatabaseHandler databaseHandler = new CDatabaseHandler();
+        CJsonHandler jsonHandler = new CJsonHandler();
         System.out.println("-------------------------------------------");
 
         //Phase 1: Fill a List with the LevelDB:
@@ -37,7 +35,7 @@ public class Main {
         System.out.println("-------------------------------------------");
 
         //Phase 2: Download for each list entry a (new) Verbalization
-        errorList.setList(CJsonHandler.getVerbalization(list));
+        jsonHandler.getVerbalization(list);
         System.out.println("-------------------------------------------");
 
         //Phase 3: Push the new Verbalizations in the DB
@@ -48,9 +46,9 @@ public class Main {
         System.out.println(list.toString());
         System.out.println("-------------------------------------------");
 
-        if(!errorList.getList().isEmpty()) {
+        if(!jsonHandler.getErrorList().isEmpty()) {
             System.err.println("Q2G-Downloadfehler bei Folgenden Level:");
-            System.err.println(errorList.toString());
+            System.err.println(jsonHandler.getErrorList().toString());
         }
     }
 }
