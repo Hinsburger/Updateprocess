@@ -44,7 +44,7 @@ public class CDatabaseHandler {
             }
 
         } catch (SQLException ex) {
-            System.err.println("FEHLER VERSION");
+            System.err.println("Verbindung zur Datenbank konnte nicht hergestellt werden!");
 
         } finally {
             try {
@@ -77,7 +77,7 @@ public class CDatabaseHandler {
         try {
 
             con = DriverManager.getConnection(props[0], props[1], props[2]);
-            pst = con.prepareStatement("SELECT * FROM game_level");
+            pst = con.prepareStatement("SELECT * FROM level");
             rs = pst.executeQuery();
 
             int id;
@@ -143,8 +143,8 @@ public class CDatabaseHandler {
 
             for(CLevel level : list.getList()) {
                 if(level.isReady()) {
-                    st.executeUpdate("UPDATE game_level SET verbalization = '" + level.getVerbalization()
-                                        + "', ready = TRUE WHERE game_level.levelid = " + level.getId());
+                    st.executeUpdate("UPDATE level SET verbalization = '" + level.getVerbalization()
+                                        + "', ready = TRUE WHERE level.levelid = " + level.getId());
                 }
             }
 
