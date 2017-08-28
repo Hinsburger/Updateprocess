@@ -139,16 +139,19 @@ public class CDatabaseHandler {
             con = DriverManager.getConnection(props[0], props[1], props[2]);
             st = con.createStatement();
 
-            con.setAutoCommit(false);
+            //con.setAutoCommit(false);
 
             for(CLevel level : list.getList()) {
                 if(level.isReady()) {
-                    st.executeUpdate("UPDATE level SET verbalization = '" + level.getVerbalization()
-                                        + "', ready = TRUE WHERE level.levelid = " + level.getId());
+                    st.executeUpdate( "UPDATE level" +
+                                          " SET verbalization = '" + level.getVerbalization() + "' , ready = TRUE" +
+                                          " WHERE level.levelid = " + level.getId());
+                    System.out.println("FUCK!");
                 }
+                System.out.println("BOB SAGET!");
             }
 
-            con.commit();
+            //con.commit();
 
         } catch (SQLException ex) {
             System.err.println("FUCK UPLOAD " + ex);
@@ -157,7 +160,7 @@ public class CDatabaseHandler {
                 try {
                     con.rollback();
                 } catch (SQLException ex1) {
-
+                        System.err.println(ex);
                 }
             }
 
